@@ -1,0 +1,10 @@
+def miniMaxSum(numbers):
+    numbers.sort()
+    minimum_sum = sum(numbers[:4])
+    maximum_sum = sum(numbers[1:])
+    return minimum_sum, maximum_sum
+
+numbers = list(map(int, input().split()))
+
+min_sum, max_sum = miniMaxSum(numbers)
+print(min_sum, max_sum)
