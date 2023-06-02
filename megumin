@@ -1,0 +1,34 @@
+def findMaxPotions(n, mana, price, money):
+    potions = []
+    total_mana = 0
+    remaining_money = money
+
+    # Sort the potions based on the mana they provide per price
+    sorted_potions = sorted(zip(mana, price), key=lambda x: x[0] / x[1], reverse=True)
+
+    for i in range(n):
+        potion_mana, potion_price = sorted_potions[i]
+        if remaining_money >= potion_price:
+            potions.append((potion_mana, potion_price))
+            total_mana += potion_mana
+            remaining_money -= potion_price
+        else:
+            break
+
+    return potions, total_mana, remaining_money
+
+
+# Read the input
+n = int(input())
+mana = list(map(int, input().split()))
+price = list(map(int, input().split()))
+money = int(input())
+
+# Call the function and print the result
+potions, total_mana, remaining_money = findMaxPotions(n, mana, price, money)
+
+# Print the output
+for potion_mana, potion_price in potions:
+    print(potion_mana, potion_price)
+print("Total mana :", total_mana)
+print("Sisa uang :", remaining_money)
